@@ -28,7 +28,7 @@
 
 ### 그 밖의 작업
 
-- [mildang](https://github.com/younggeon03/mildang) — 해커톤 출품작 "밀당"의 모바일 웹(PWA) 프론트엔드. React, Vite
+- [mildang](https://github.com/younggeon03/mildang) — 해커톤 팀 프로젝트 "밀당"의 모바일 웹(PWA) 프론트엔드. React, Vite
 
 ### 쓰는 기술
 
