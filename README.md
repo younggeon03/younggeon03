@@ -2,6 +2,8 @@
 
 Java와 Spring Boot로 서버를 만들고, 되돌리기 어려운 판단은 이유와 대가를 문서로 남깁니다.
 
+younggeon03@gmail.com
+
 ### Projects
 
 **[stock-portfolio](https://github.com/younggeon03/stock-portfolio)** · 개인 프로젝트
@@ -18,12 +20,20 @@ Java와 Spring Boot로 서버를 만들고, 되돌리기 어려운 판단은 이
 
 [아키텍처](https://github.com/younggeon03/stock-portfolio/blob/main/docs/아키텍처.md) · [결정기록](https://github.com/younggeon03/stock-portfolio/blob/main/docs/결정기록.md) · [운영](https://github.com/younggeon03/stock-portfolio/blob/main/docs/운영.md)
 
-**[mildang](https://github.com/younggeon03/mildang)** · 공모전 팀 프로젝트
+**[mildang-server](https://github.com/inha-likelion-team2/mildang-server)** · 공모전 팀 프로젝트 · 백엔드 담당
 
-모바일 웹(PWA) 프론트엔드입니다. 팀원 저장소를 fork했고, [프론트 버그 수정 PR](https://github.com/killerwhale-15/mildang/pull/1)을 올렸습니다.
+밀가루 흥정 챌린지 앱 "밀당"의 백엔드 API 서버입니다. 커밋 93개 중 90개를 작성했습니다.
 
-`React` `Vite`
+`Java 21` `Spring Boot` `JPA` `PostgreSQL` `JWT` `Docker`
+
+- TossPayments 결제 승인 시 같은 주문번호 재요청(뒤로가기·더블탭)은 기존 결제를 돌려주고, 승인 API를 두 번 부르지 않습니다
+- 잔액은 `balance = total − spent − prepaid` 항등식이 항상 성립하도록 변경 지점을 두 곳으로 제한했습니다
+- 상태 전이 API는 같은 종착 상태 재요청이면 200, 다른 상태로의 교차 전이면 409로 응답합니다
+- 트랜잭션 안에서 호출하는 외부 AI 서버에 타임아웃을 걸어, AI가 멈춰도 DB 커넥션 풀이 마르지 않게 했습니다
+- 테스트 223개
+
+프론트엔드는 팀원 저장소를 [fork](https://github.com/younggeon03/mildang)해 두었고, [프론트 버그 수정 PR](https://github.com/killerwhale-15/mildang/pull/1)도 올렸습니다.
 
 ### Tech
 
-Java 21 · Spring Boot · Spring Data JPA · MySQL · Flyway · JUnit 5 · AssertJ · Docker · GitHub Actions
+Java 21 · Spring Boot · Spring Data JPA · MySQL · PostgreSQL · Flyway · JWT · JUnit 5 · AssertJ · Docker · GitHub Actions
