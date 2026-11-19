@@ -18,17 +18,19 @@ younggeon03@gmail.com
 
 [아키텍처](https://github.com/younggeon03/stock-portfolio/blob/main/docs/아키텍처.md) · [결정기록](https://github.com/younggeon03/stock-portfolio/blob/main/docs/결정기록.md) · [운영](https://github.com/younggeon03/stock-portfolio/blob/main/docs/운영.md)
 
-**kis-ai-quant-trader** · 개인 프로젝트 · 비공개 (대회 종료 후 공개 예정)
+**[kis-ai-quant-trader](https://github.com/younggeon03/kis-ai-quant-trader)** · 개인 프로젝트
 
-한국투자증권 Open API로 실제 대회 계좌(제16회 뱅키스 대학생 모의투자대회 AI부문)를 운용하는 자동매매 엔진입니다. 2026-10-13부터 네이버 클라우드 서버에서 systemd 서비스로 돌고 있습니다.
+제16회 뱅키스 대학생 모의투자대회(AI 부문)에서 한국투자증권 Open API로 대회 계좌를 운용한 자동매매 엔진입니다. 네이버 클라우드 서버에서 systemd 서비스로 30거래일 동안 실거래로 돌렸습니다.
 
 `Python 3.13` `asyncio` `httpx` `WebSocket` `FastAPI` `Prometheus` `systemd` `NCP`
 
 - 실서버 첫 기동에서 유량 초과가 6분간 74회 났습니다. 문서값(초당 2건)을 믿지 않고 거절률을 직접 재서 실효 한도(초당 1건)로 토큰 버킷을 다시 잡아 0~3회로 줄였습니다
-- 요청 하나의 시간을 분해해 네트워크 왕복 144ms, 유량 대기 904ms로 대기열이 86%임을 확인했습니다. 전송 계층이 아니라 호출 수를 줄여 284종목 판정을 305.0초에서 19.8초로 단축했습니다
-- 유량 제어는 Mock까지 포함해 모든 REST 호출이 통과합니다. 주문 > 계좌 > 시세 우선순위라 시세 폴링이 몰려도 손절 주문이 밀리지 않습니다
-- `.env` 한 줄로 내부 가상 체결 엔진과 실제 KIS 서버를 바꿉니다. 계좌 발급 전에 전체 파이프라인을 검증하고, 발급 후에는 코드 수정 없이 실서버에 붙였습니다
-- 성과 수치에는 생존 편향·파라미터 선택편향·표본 부족을 문서에 같이 적었습니다. 측정한 설정과 지금 돌리는 설정이 다른 구간은 "측정 지문이 없다"고 밝혀 둡니다
+- 요청 하나의 시간을 분해해 유량 대기가 86%임을 확인했습니다. 전송 계층이 아니라 호출 수를 줄여(30종목 묶음 조회) 284종목 판정을 305.0초에서 19.8초로 단축했습니다
+- 체결 통보 WebSocket이 연결된 채 엿새 동안 메시지 0건이었습니다. 장중 무음 180초 유휴 타임아웃으로 재연결하게 해 하루 체결 기록이 0건에서 46건으로 돌아왔습니다
+- `.env` 한 줄로 가상 체결 엔진과 실제 KIS 서버를 바꿉니다. 계좌 없이 셀프테스트 27개 항목으로 전 경로를 검증합니다
+- 전략은 시간 순 교차검증과 봉인 구간 시험을 통과한 것만 채택했고, 통과하지 못한 시도와 수치도 문서에 남겼습니다
+
+[README](https://github.com/younggeon03/kis-ai-quant-trader#readme) · [아키텍처](https://github.com/younggeon03/kis-ai-quant-trader/blob/main/docs/ARCHITECTURE.md) · [서버 운영](https://github.com/younggeon03/kis-ai-quant-trader/blob/main/docs/서버-운영-설계.md)
 
 **미래에셋증권 AI 페스티벌** · 공모전 팀 프로젝트 · 백엔드 담당 · 비공개
 
