@@ -1,5 +1,3 @@
-Java·Spring Boot로 서버를 만들고, 증권사 API 연동은 Python으로 합니다.
-
 younggeon03@gmail.com
 
 | 프로젝트 | 내용 | 핵심 |
